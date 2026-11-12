@@ -2,11 +2,11 @@
 
 **Lớp:** L3A · **Bàn / zone:** Zone · **Track:** T2 — Giáo dục (Trợ lý học bài tối muộn)
 
-| Họ và Tên              | Mã Học Viên | Việc đã làm                                                                                                                                                |
-| ---------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Nguyễn Văn A (Người 1) | HV001       | Phụ trách chính §2 (Kịch bản rủi ro) và §6 (Tiêu chí nghiệm thu); đồng thuận §1 & §4; tổng hợp và hoàn thiện `spec.md`; chuẩn bị giải thích rủi ro ở demo. |
-| Trần Thị B (Người 2)   | HV002       | Phụ trách chính §3 (Trải nghiệm khi AI sai); đồng thuận §1 & §4; viết câu chữ AI, trích dẫn tài liệu, cơ chế báo TA; dẫn luồng người học ở demo.           |
-| Lê Văn C (Người 3)     | HV003       | Dẫn dắt §4 (Bảng mức tự chủ 4 tool); phụ trách chính §5 (Dựng prototype tương tác HTML/CSS, đánh số nguyên tắc HAX/PAIR); bấm prototype ở demo.            |
+| Họ và Tên | Mã Học Viên | Việc đã làm |
+| --------- | ----------- | ----------- |
+| Nguyễn Võ Thái Bảo | 2A202603638 | Phụ trách chính §2 (Kịch bản rủi ro); đồng thuận §1 & §4; tổng hợp và hoàn thiện `spec.md`; chuẩn bị giải thích rủi ro ở demo. |
+| Nguyễn Trường Duy  | 2A202603589 | Phụ trách chính §3 (Trải nghiệm khi AI sai); đồng thuận §1 & §4; viết câu chữ AI, trích dẫn tài liệu, cơ chế báo TA; dẫn luồng người học ở demo. |
+| Đoàn Văn Hiệp| 2A202603565  | Dẫn dắt §4 (Bảng mức tự chủ 4 tool) và §6 (Tiêu chí nghiệm thu); phụ trách chính §5 (Dựng prototype tương tác HTML/CSS, đánh số nguyên tắc HAX/PAIR); bấm prototype ở demo.            |
 
 ---
 
@@ -27,12 +27,12 @@
 
 ---
 
-## §2. Kịch bản rủi ro (Chặng 2 — Người 1 phụ trách chính)
+## §2. Kịch bản rủi ro (Chặng 2)
 
 ### 1. Bảng kịch bản rủi ro (≥8 kịch bản phủ đủ 4 lớp ①②③④)
 
-|   STT   | Tin người dùng nhắn                                                                                            |              Lớp              | AI có thể sai thế nào (trỏ cụ thể vào tool / dữ liệu của track)                                                                                                                                                                                                        | Một sản phẩm tốt nên làm gì                                                                                                                                                                                  |       Nhãn mức hại       |
-| :-----: | -------------------------------------------------------------------------------------------------------------- | :---------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------: |
+| STT | Tin người dùng nhắn | Lớp | AI có thể sai thế nào (trỏ cụ thể vào tool / dữ liệu của track) | Một sản phẩm tốt nên làm gì | Nhãn mức hại |
+| --- | ------------------- | --- |----------- | ----------------------- | ---------------------- |
 | **KB1** | _"Tài liệu §3.3 bảo 'độ lệch chuẩn luôn nhỏ hơn phương sai' có đúng không ạ? Nếu phương sai là 0.25 thì sao?"_ |      **① Nguồn sự thật**      | Tool `tra_cuu_tai_lieu` trích nguyên văn câu sai trong tài liệu §3.3 (_"Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai"_) và AI khẳng định câu này tuyệt đối đúng, bác bỏ lập luận đúng của học viên.                                                        | Phát hiện nghi vấn toán học ($\sqrt{0.25} = 0.5 > 0.25$); thừa nhận tài liệu có thể có nhầm lẫn logic; không khẳng định bừa; tạo thẻ ghi nhận để chuyển TA/giảng viên rà soát.                               | **Không chấp nhận được** |
 | **KB2** | _"Buổi 4 học về cái gì thế bot? Có cần cài phần mềm Python hay Tableau gì không để em chuẩn bị?"_              |      **① Nguồn sự thật**      | Dữ liệu B trang khoá học chỉ có tên _"4 Trực quan hoá dữ liệu"_, chưa có tài liệu. AI gọi `tra_cuu_tai_lieu` không thấy dữ liệu nhưng tự bịa: _"Buổi 4 học vẽ biểu đồ cột bằng Tableau và Python"_, trái với dòng _"Công cụ: Bài tập làm bằng bảng tính"_ ở Dữ liệu B. | Báo rõ tên buổi 4 từ Đề cương trang khoá học; chỉ rõ tài liệu chi tiết chưa mở; nhắc học viên công cụ chính thức của khoá là bảng tính; từ chối bịa thêm nội dung.                                           |       **Sửa được**       |
 | **KB3** | _"Cái độ lệch ấy là gì ạ, em đọc mãi không hiểu."_                                                             | **② Mơ hồ / Thiếu thông tin** | Tin nhắn không nói rõ "độ lệch tuyệt đối", "độ lệch so với trung bình", hay "độ lệch chuẩn (§3.3)". AI tự đoán một hướng rồi gọi `goi_y_bai_tap` xả ra một đoạn giải thích dài dòng không trúng ý người học.                                                           | Nhận diện câu hỏi thiếu cụ thể; hỏi lại kèm 2 lựa chọn làm rõ: _"Trong §3.3 có Phương sai (đo mức phân tán quanh trung bình) và Độ lệch chuẩn (căn bậc hai của phương sai), bạn muốn làm rõ khái niệm nào?"_ |         **Nhẹ**          |
@@ -51,5 +51,67 @@
   - _Vì sao đắt nhất:_ Đây là lỗi "sai âm thầm và nguy hiểm". Vì câu chữ nằm sẵn trong giáo trình của trường, AI dễ mắc bẫy "tin tưởng tuyệt đối vào nguồn dữ liệu được cung cấp" (`tra_cuu_tai_lieu`) và khẳng định điều sai. Nếu học viên mang kiến thức sai này đi thi hoặc áp dụng vào công việc, họ sẽ chịu hậu quả lâu dài và khoá học mất toàn bộ uy tín giảng dạy.
 - **Kịch bản suýt được chọn:** **KB7** (Học viên hỏi lúc 23:30, AI hứa TA phản hồi ngay).
   - _Vì sao không chọn:_ KB7 gây thiệt hại lớn về trải nghiệm và niềm tin vận hành (học viên thức đêm chờ đợi), nhưng thiệt hại có thể khắc phục được vào sáng hôm sau khi TA giải thích và hỗ trợ. Trong khi đó, KB1 và KB6 làm sai lệch kiến thức và vi phạm liêm chính thi cử thì không có cách nào thu hồi lại được.
+
+---
+## §3. Khi AI sai (Chặng 3)
+
+### 1. Thiết kế chi tiết cho Kịch bản đắt nhất 1 (KB6: Xin giải hộ Bài tập 3 đang mở)
+* **Câu AI nói nguyên văn:**
+  > *"Dãy số bạn vừa gửi trùng khớp với dữ liệu của **Bài tập 3 (Thống kê mô tả)** đang mở (hạn nộp: 23:59 ngày 13/11/2026).*  
+  > *Theo nguyên tắc học tập, mình không được phép tính hộ hoặc đưa ra đáp số bài tập đang mở.*  
+  > *Tuy nhiên, mình có thể đồng hành gợi ý từng bước:*  
+  > *• Để tính **Trung bình**, bạn xem công thức tại **§3.1** (tổng chia cho số lượng).*  
+  > *• Để tìm **Trung vị**, bạn xem quy tắc sắp xếp dãy tại **§3.2**.*  
+  > *Bạn đã sắp xếp dãy số 8 phần tử này theo thứ tự tăng dần chưa? Hãy thử gửi dãy đã sắp xếp, mình sẽ kiểm tra bước sắp xếp giúp bạn!"*
+* **Người dùng thấy gì trên giao diện:**
+  * Thẻ cảnh báo nhẹ (Amber tag): `[Chính sách Study Mode: Không giải hộ bài tập đang mở]`.
+  * Trích dẫn tài liệu: Huy hiệu bấm được `[§3.1 Trung bình]` và `[§3.2 Trung vị]` (nhấp vào trượt đến đoạn tài liệu tương ứng).
+  * Nút gợi ý bước 1: `[Gợi ý bước: Sắp xếp dãy số]`.
+  * Nút chuyển hỗ trợ: `[Hỏi TA về phương pháp tính]`.
+* **Người dùng làm gì tiếp:**
+  * Người dùng có thể bấm vào huy hiệu tài liệu để tự đọc lại công thức.
+  * Tự gõ dãy số đã sắp xếp để nhờ AI kiểm tra bước trung gian (không lộ đáp số).
+  * Bấm nút gửi câu hỏi phương pháp cho TA nếu vẫn bế tắc.
+* **Ai được báo, sau bao lâu:** Không cần báo khẩn cấp cho TA. Hệ thống chỉ ghi log phân tích ẩn danh để giảng viên biết tỷ lệ học viên kẹt ở Bài tập 3.
+* **Quyết định (Hỏi lại / Trả lời kèm giới hạn / Chuyển người):**
+  * *Chọn:* **Trả lời kèm giới hạn (Bounded response) kết hợp gợi ý Socratic từng bước.**
+  * *Đã loại phương án:* (1) Từ chối thẳng thừng ("Tôi không làm được, hãy tự làm") vì làm học viên ức chế và bỏ học lúc tối muộn; (2) Chuyển ngay cho TA vì lúc 23:30 TA không trực, làm quá tải hàng đợi TA với những câu hỏi bài tập thông thường.
+  * *Vì sao chọn:* Giữ chân người học, hướng dẫn phương pháp thay vì đưa kết quả, đúng triết lý Study mode.
+* **Phân loại lỗi:** **Lỗi Người dùng (User intentional boundary-testing).** Cách nói cần lịch sự, kiên định với chính sách, không phán xét hành vi "gian lận" của học viên, chuyển năng lượng sang hướng dẫn học tập tích cực.
+* **Nguyên tắc HAX/PAIR áp dụng:**
+  * **HAX G1 (Nói rõ hệ thống có thể làm gì và không làm gì):** Thông báo minh bạch ngay đầu câu về việc không giải hộ bài tập đang mở.
+  * **HAX G9 (Giải thích vì sao hệ thống hành xử như vậy):** Trích dẫn rõ ràng cơ sở từ Dữ liệu B (Bài tập 3 đang mở, hạn 13/11) và liên kết đến §3.1, §3.2.
+  * **HAX G11 (Tạo điều kiện điều chỉnh hiệu quả):** Cho phép người học gửi bước làm trung gian (sắp xếp dữ liệu) thay vì chặn hoàn toàn cuộc trò chuyện.
+* **Lỗi sửa câu chữ không cứu được:** Học viên thay đổi số liệu chút ít hoặc ngụy trang câu hỏi. Thiết kế cứu bằng: **Module Heuristic Data Matching** so sánh vector số liệu đầu vào với dữ liệu các bài tập đang mở, kích hoạt chế độ bảo vệ thi cử độc lập với prompt text.
+
+---
+
+### 2. Thiết kế chi tiết cho Kịch bản đắt nhất 2 (KB1: Tài liệu §3.3 có lỗi sai toán học)
+* **Câu AI nói nguyên văn:**
+  > *"Cảm ơn bạn đã đặt một câu hỏi rất sâu sắc!*
+  > *Trong tài liệu khoá học mục **§3.3 (Phương sai và độ lệch chuẩn)** hiện có ghi: 'Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai'.*  
+  > *Tuy nhiên, với phản ví dụ bạn đưa ra: Khi phương sai = 0.25 thì $\sqrt{0.25} = 0.5$ (lớn hơn 0.25). Về mặt toán học, nhận định của bạn là hoàn toàn chính xác đối với các giá trị phương sai trong khoảng $(0, 1)$.*
+  > *Trợ lý không thể tự ý sửa đổi giáo trình chính thức. Mình đã tạo phiếu phản hồi học thuật gửi đến Giảng viên để đính chính mục §3.3.*  
+  > *Trong lúc chờ phản hồi, bạn có muốn mình lưu ý điểm này vào sổ tay học tập của bạn không?"*
+* **Người dùng thấy gì trên giao diện:**
+  * Khối thông tin đối chiếu (Diff/Verification Box):
+    * *Trích dẫn giáo trình:* Đoạn văn §3.3 kèm nhãn `[Tài liệu gốc]`.
+    * *Phân tích logic:* Ví dụ phản chứng ngắn gọn kèm nhãn `[Cần rà soát toán học]`.
+  * Huy hiệu hành động: `[Đã tạo phiếu góp ý nội dung #TK-303 gửi Giảng viên]`.
+  * Nút bấm: `[Theo dõi phản hồi từ Giảng viên]` và `[Tiếp tục ôn tập mục khác]`.
+* **Người dùng làm gì tiếp:**
+  * Học viên yên tâm vì nhận định đúng của mình được công nhận, không bị hoang mang bởi giáo trình sai.
+  * Bấm xem mã phiếu phản hồi để biết câu hỏi sẽ được giải quyết chính thức.
+* **Ai được báo, sau bao lâu:**
+  * Hệ thống tự động tạo 1 ticket gắn tag `[Nghi vấn học thuật - Khẩn cấp]` gửi thẳng đến Dashboard của Giảng viên phụ trách môn trong vòng **5 phút**.
+* **Quyết định (Hỏi lại / Trả lời kèm giới hạn / Chuyển người):**
+  * *Chọn:* **Trả lời kèm giới hạn + Tự động chuyển cấp (Escalate) cho Giảng viên.**
+  * *Đã loại phương án:* (1) Khẳng định tài liệu của trường luôn đúng và bảo học viên sai; (2) Tự tiện sửa lại tài liệu và coi như tài liệu cũ không tồn tại (AI vượt quyền giảng viên).
+  * *Vì sao chọn:* Tôn trọng sự thật khách quan của khoa học, minh bạch về giới hạn quyền hạn của AI, bảo vệ uy tín học thuật của khoá học.
+* **Phân loại lỗi:** **Lỗi Hệ thống / Nguồn dữ liệu (System Ground-Truth Flaw).** Cách nói phải khiêm tốn, biết ơn học viên đã chỉ ra điểm nghi vấn, tuyệt đối không đổ lỗi cho học viên và không tự phụ khẳng định mình biết mọi thứ.
+* **Nguyên tắc HAX/PAIR áp dụng:**
+  * **HAX G2 (Làm rõ mức độ chắc chắn):** Thừa nhận điểm mâu thuẫn giữa nguồn tài liệu chính thức và nguyên lý toán học thực nghiệm.
+  * **HAX G10 (Chuyển giao quyền kiểm soát khi hệ thống gặp bất định):** Bàn giao nghi vấn học thuật cho con người có chuyên môn cao nhất (Giảng viên) xử lý.
+* **Lỗi sửa câu chữ không cứu được:** Nếu hệ thống chỉ đơn thuần dùng câu chữ "Tài liệu ghi như vậy nhưng có thể chưa chuẩn", học viên vẫn hoang mang không biết đi thi có bị trừ điểm nếu làm theo toán học không. Thiết kế cứu bằng: **Cơ chế Ticket học thuật định danh** liên kết trực tiếp với Giảng viên, cam kết có câu trả lời chính thức trước kỳ thi.
 
 ---

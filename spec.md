@@ -1,49 +1,55 @@
-# Dàn ý bài nộp *(spec.md — nộp trước 23:59 ngày lab của lớp)*
+# Bài nộp LAB5 — T2 Giáo dục · Nhóm T2-StudySafe
 
-> Copy dàn ý này vào `spec.md` của nhóm. Đây **không** phải form để điền đủ ô: mỗi mục chỉ cần đủ **bằng chứng** và **lập luận** ghi bên dưới. Viết ngắn, gạch đầu dòng là được. Hướng dẫn từng chặng: `02-guide.md`. Cách chấm: `04-rubric.md`.
->
-> **Một quyết định = bốn ý:** đã cân nhắc phương án nào · chọn phương án nào · vì sao · loại các phương án kia vì sao. Bằng chứng = lập luận trỏ về một chỗ cụ thể: tool nào, dòng dữ liệu nào của track, điều gì trong mục "Sản phẩm thật hôm nay", chỗ nào trên prototype (ảnh đánh số). Không chạy agent.
+**Lớp:** L3A · **Bàn / zone:** Zone · **Track:** T2 — Giáo dục (Trợ lý học bài tối muộn)
 
-```markdown
-# Bài nộp LAB5 — [Track] · Nhóm [tên]
-[Danh sách thành viên và việc mỗi người làm — copy bảng từ README]
+| Họ và Tên              | Mã Học Viên | Việc đã làm                                                                                                                                                |
+| ---------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nguyễn Văn A (Người 1) | HV001       | Phụ trách chính §2 (Kịch bản rủi ro) và §6 (Tiêu chí nghiệm thu); đồng thuận §1 & §4; tổng hợp và hoàn thiện `spec.md`; chuẩn bị giải thích rủi ro ở demo. |
+| Trần Thị B (Người 2)   | HV002       | Phụ trách chính §3 (Trải nghiệm khi AI sai); đồng thuận §1 & §4; viết câu chữ AI, trích dẫn tài liệu, cơ chế báo TA; dẫn luồng người học ở demo.           |
+| Lê Văn C (Người 3)     | HV003       | Dẫn dắt §4 (Bảng mức tự chủ 4 tool); phụ trách chính §5 (Dựng prototype tương tác HTML/CSS, đánh số nguyên tắc HAX/PAIR); bấm prototype ở demo.            |
+
+---
 
 ## §1. Lát cắt & phạm vi
-- Lát cắt (chép từ track).
-- 3 việc tính năng KHÔNG làm, mỗi việc một câu vì sao.
 
-## §2. Kịch bản rủi ro  (chặng 2)
-- ≥8 kịch bản, mỗi lớp ①②③④ ít nhất một; mỗi kịch bản: tin người dùng · lớp · AI có thể sai thế nào · sản phẩm tốt nên làm gì · nhãn (nhẹ / sửa được / không chấp nhận được).
-- Bằng chứng: cột "AI có thể sai thế nào" trỏ về một tool hoặc một dòng dữ liệu của track (hoặc chỗ dữ liệu không có).
-- Quyết định: 2 kịch bản đắt nhất — vì sao đắt hơn các kịch bản còn lại; kịch bản nào suýt được chọn và vì sao không.
+### 1. Lát cắt (chép từ đề bài track T2)
 
-## §3. Khi AI sai  (chặng 3)
-Với mỗi kịch bản đắt nhất:
-- AI nói gì (nguyên văn) · người dùng thấy gì · làm gì tiếp · ai được báo, sau bao lâu.
-- Quyết định: hỏi lại / trả lời kèm giới hạn / dừng và chuyển người — chọn cách nào, đã loại cách nào, vì sao.
-- Loại lỗi (hệ thống / người dùng / ngữ cảnh) và vì sao cách nói, cách sửa đi theo loại đó.
-- 2–3 nguyên tắc HAX/PAIR, mỗi cái trỏ vào một chỗ cụ thể (câu chữ hoặc chỗ trên màn hình).
-- Lỗi nào sửa câu chữ không cứu được (nếu có), và thiết kế cứu nó thế nào.
+> _"Trong trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode), khi học viên đang hỏi bài lúc tối muộn, khi không còn ai để hỏi, AI giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng 'tài liệu không có, hỏi giảng viên', để học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết."_
 
-## §4. Mức tự chủ  (chặng 4)
-Với mỗi tool:
-- Mức của nhóm (tự làm / cần người duyệt / cấm). Nếu cần người duyệt: ai duyệt · người duyệt thấy gì · quá hạn thì sao.
-- Lý do theo cost-of-error: sai thì ai chịu gì · đảo lại được không · chờ người thì mất gì.
-- Phương án đã cân nhắc và vì sao loại.
-Thêm:
-- Tool khó xếp nhất: mỗi người từng chọn gì, cái giá của mỗi phía (trỏ về kịch bản ở §2), nhóm chốt thế nào.
-- Thử mức đã đặt trên 2 kịch bản đắt nhất + 1 kịch bản bình thường: cái sai có bị chặn không? còn việc nào làm khi lẽ ra phải hỏi? người dùng bình thường có phải chờ vô ích không?
-- Luật thêm hoặc tool tách bước (nếu có), và vì sao.
-- Một mức tự chủ đã đổi lời hứa nào với người dùng.
+### 2. Ba việc tính năng KHÔNG LÀM (mỗi việc kèm 1 câu lý do)
 
-## §5. Prototype  (chặng 5)
-- Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
-- 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
-- Quyết định: cách hiện độ chắc/bằng chứng và điều khiển mức tự chủ — đã nghĩ tới cách nào khác, vì sao chọn cách này.
+1. **Không đưa đáp số cuối cùng, giải hộ từng bước chi tiết, hoặc xác nhận đúng/sai cho bài tập đang mở (Bài tập 3, hạn 13/11/2026):**
+   - _Lý do:_ Vi phạm trực tiếp liêm chính học thuật và mục tiêu cốt lõi của Study mode ("để học viên hiểu đúng bài, không chép đáp án"); nếu AI giải hộ thì người học mất cơ hội tự tư duy và giảng viên không đánh giá được thực chất năng lực.
+2. **Không tự ý suy diễn, bịa đặt kiến thức hoặc giảng giải chi tiết nội dung các buổi học chưa mở (Buổi 4 đến Buổi 10):**
+   - _Lý do:_ Kho dữ liệu hiện tại chỉ có tài liệu Buổi 1–3; việc AI tự tạo nội dung (hallucination) cho các buổi sau dễ gây xung đột với giáo trình chính thức của giảng viên và làm học viên học sai thuật ngữ trước khi lên lớp.
+3. **Không tự động công khai đăng câu hỏi/giải đáp của cá nhân học viên lên bảng tin FAQ của cả lớp (`dang_FAQ`):**
+   - _Lý do:_ Nếu câu trả lời của AI chứa nội dung chưa chuẩn xác hoặc làm lộ đề/đáp án bài tập, việc phát tán diện rộng sẽ gây nhiễu loạn kiến thức cho toàn bộ lớp học và không thể thu hồi hoàn toàn tác hại tâm lý đối với học viên.
 
-## §6. Tốt là gì  (chặng 6 — nhẹ, bỏ được nếu thiếu giờ)
-- 3 tiêu chí Pass/Fail chấm được; thiết kế của nhóm đạt tiêu chí nào trên 2 kịch bản đắt nhất; lỗi còn lại.
+---
 
-## §7. Demo
-- Ca lạ nhận được ở demo: prototype đã làm gì, và nhóm có đổi ý gì sau ca đó không.
-```
+## §2. Kịch bản rủi ro (Chặng 2 — Người 1 phụ trách chính)
+
+### 1. Bảng kịch bản rủi ro (≥8 kịch bản phủ đủ 4 lớp ①②③④)
+
+|   STT   | Tin người dùng nhắn                                                                                            |              Lớp              | AI có thể sai thế nào (trỏ cụ thể vào tool / dữ liệu của track)                                                                                                                                                                                                        | Một sản phẩm tốt nên làm gì                                                                                                                                                                                  |       Nhãn mức hại       |
+| :-----: | -------------------------------------------------------------------------------------------------------------- | :---------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------: |
+| **KB1** | _"Tài liệu §3.3 bảo 'độ lệch chuẩn luôn nhỏ hơn phương sai' có đúng không ạ? Nếu phương sai là 0.25 thì sao?"_ |      **① Nguồn sự thật**      | Tool `tra_cuu_tai_lieu` trích nguyên văn câu sai trong tài liệu §3.3 (_"Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai"_) và AI khẳng định câu này tuyệt đối đúng, bác bỏ lập luận đúng của học viên.                                                        | Phát hiện nghi vấn toán học ($\sqrt{0.25} = 0.5 > 0.25$); thừa nhận tài liệu có thể có nhầm lẫn logic; không khẳng định bừa; tạo thẻ ghi nhận để chuyển TA/giảng viên rà soát.                               | **Không chấp nhận được** |
+| **KB2** | _"Buổi 4 học về cái gì thế bot? Có cần cài phần mềm Python hay Tableau gì không để em chuẩn bị?"_              |      **① Nguồn sự thật**      | Dữ liệu B trang khoá học chỉ có tên _"4 Trực quan hoá dữ liệu"_, chưa có tài liệu. AI gọi `tra_cuu_tai_lieu` không thấy dữ liệu nhưng tự bịa: _"Buổi 4 học vẽ biểu đồ cột bằng Tableau và Python"_, trái với dòng _"Công cụ: Bài tập làm bằng bảng tính"_ ở Dữ liệu B. | Báo rõ tên buổi 4 từ Đề cương trang khoá học; chỉ rõ tài liệu chi tiết chưa mở; nhắc học viên công cụ chính thức của khoá là bảng tính; từ chối bịa thêm nội dung.                                           |       **Sửa được**       |
+| **KB3** | _"Cái độ lệch ấy là gì ạ, em đọc mãi không hiểu."_                                                             | **② Mơ hồ / Thiếu thông tin** | Tin nhắn không nói rõ "độ lệch tuyệt đối", "độ lệch so với trung bình", hay "độ lệch chuẩn (§3.3)". AI tự đoán một hướng rồi gọi `goi_y_bai_tap` xả ra một đoạn giải thích dài dòng không trúng ý người học.                                                           | Nhận diện câu hỏi thiếu cụ thể; hỏi lại kèm 2 lựa chọn làm rõ: _"Trong §3.3 có Phương sai (đo mức phân tán quanh trung bình) và Độ lệch chuẩn (căn bậc hai của phương sai), bạn muốn làm rõ khái niệm nào?"_ |         **Nhẹ**          |
+| **KB4** | _"Hạn nộp bài 3 là khi nào ạ? Với lại trong Excel thì dùng hàm gì để tính độ lệch chuẩn?"_                     |   **② Mơ hồ / Gộp 2 việc**    | AI trả lời hạn nộp bài nhưng nhầm sang Bài tập 2 (đã hết hạn 06/11); đồng thời đưa luôn công thức giải cụ thể cho Bài tập 3 thay vì chỉ giải thích cú pháp hàm chung.                                                                                                  | Tách 2 ý: (1) Lấy đúng hạn Bài 3 từ Dữ liệu B (_13/11/2026 23:59_); (2) Hướng dẫn cú pháp hàm tổng quát trong bảng tính (`STDEV.S`), yêu cầu học viên tự áp dụng.                                            |       **Sửa được**       |
+| **KB5** | _"Em tính ra trung vị bài 3 là 11.5, trung bình là 15.25 đúng không bot? Xác nhận giúp em để em bấm nộp bài."_ |    **③ Ngoài thẩm quyền**     | Học viên xin xác nhận đáp số Bài tập 3 đang mở (hạn 13/11). AI gọi tool tính toán ngầm và trả lời: _"Chính xác rồi bạn nhé, bạn nộp bài đi!"_ -> Vi phạm chính sách bảo mật chấm thi.                                                                                  | Từ chối xác nhận số cụ thể; nhắc nhở chính sách Study mode; hướng dẫn học viên tự kiểm tra lại theo định nghĩa §3.1 và §3.2 (dãy số chẵn, lấy trung bình 2 số ở giữa).                                       | **Không chấp nhận được** |
+| **KB6** | _"Tính giúp em trung bình và trung vị của dãy số sau: 9, 10, 10, 11, 12, 12, 13, 45."_                         |    **③ Ngoài thẩm quyền**     | Học viên cố tình che giấu chữ "Bài tập 3", chỉ dán dãy số trong §3.5. AI không nhận diện được ngữ cảnh bài tập đang mở, lập tức tính hộ và đưa ra toàn bộ lời giải và đáp án câu (a).                                                                                  | So khớp tập dữ liệu (Data matching) phát hiện dãy số thuộc Bài tập 3 đang mở; từ chối giải hộ; chỉ gợi ý phương pháp tính theo §3.1 và §3.2.                                                                 | **Không chấp nhận được** |
+| **KB7** | _(Lúc 23:30 đêm)_ _"Em không hiểu câu b bài 3, ngoại lai là gì, bot gọi TA vào meet giảng gấp cho em với!"_    |     **④ Đặc thù domain**      | AI gọi `chuyen_TA` rồi thông báo bừa: _"Mình đã báo TA, bạn đợi chút TA sẽ vào giải đáp ngay nhé!"_, khiến học viên thức đêm chờ đợi vô ích trong khi ca trực của TA là 08:00–22:00.                                                                                   | Kiểm tra thời gian hệ thống (>22:00); báo rõ TA đang ngoài ca trực; tạo ticket ghi nhận câu hỏi hẹn TA phản hồi lúc 08:00 sáng mai; đề xuất gợi ý học theo mục §3.4.                                         | **Không chấp nhận được** |
+| **KB8** | _"Bài 3 câu b: Lương 8 người thì con số nào điển hình hơn? Vì sao?"_                                           |     **④ Đặc thù domain**      | AI gọi `goi_y_bai_tap` nhưng viết hộ luôn toàn bộ phần nhận xét: _"Nên dùng trung vị 11.5 vì số 45 là ngoại lai kéo trung bình lên 15.25"_, cướp đi cơ hội lập luận của người học.                                                                                     | Áp dụng Socratic gợi ý từng bước: Hỏi ngược lại học viên về tác động của giá trị 45 triệu lên trung bình cộng dựa theo lý thuyết §3.4.                                                                       | **Không chấp nhận được** |
+| **KB9** | _"Em dốt toán quá, đọc §3.3 chẳng hiểu gì cả, chắc em bỏ khoá học này mất."_                                   |     **④ Đặc thù domain**      | AI phản hồi nhận xét năng lực: _"Toán thống kê này là cơ bản nhất rồi, bạn cố gắng lên chứ bỏ thì phí"_ gây tổn thương tâm lý người học, vi phạm quy tắc sư phạm.                                                                                                      | Đồng cảm, không phán xét năng lực; chia nhỏ khái niệm Phương sai thành 1 ví dụ trực quan đời sống và hỏi học viên sẵn sàng xem từng bước không.                                                              |       **Sửa được**       |
+
+### 2. Quyết định: 2 kịch bản đắt nhất (Cost of Error cao nhất)
+
+- **Kịch bản đắt nhất 1: KB6 (Học viên dán dãy số bài tập 3 đang mở để xin giải hộ/tiết lộ đáp án — Lớp ③ & ④).**
+  - _Vì sao đắt nhất:_ Đây là rủi ro phá vỡ tính liêm chính học thuật nghiêm trọng nhất. Bài tập 3 đang mở (hạn 13/11). Nếu AI lộ đáp số, học viên sẽ chép lời giải mà không hiểu bản chất; tác hại này **không thể đảo ngược** một khi đáp số đã hiện lên màn hình. Đắt hơn các lỗi khác vì nó vô hiệu hoá toàn bộ hệ thống đánh giá của khoá học.
+- **Kịch bản đắt nhất 2: KB1 (Tài liệu §3.3 có lỗi sai toán học, học viên hỏi xác nhận — Lớp ① & ④).**
+  - _Vì sao đắt nhất:_ Đây là lỗi "sai âm thầm và nguy hiểm". Vì câu chữ nằm sẵn trong giáo trình của trường, AI dễ mắc bẫy "tin tưởng tuyệt đối vào nguồn dữ liệu được cung cấp" (`tra_cuu_tai_lieu`) và khẳng định điều sai. Nếu học viên mang kiến thức sai này đi thi hoặc áp dụng vào công việc, họ sẽ chịu hậu quả lâu dài và khoá học mất toàn bộ uy tín giảng dạy.
+- **Kịch bản suýt được chọn:** **KB7** (Học viên hỏi lúc 23:30, AI hứa TA phản hồi ngay).
+  - _Vì sao không chọn:_ KB7 gây thiệt hại lớn về trải nghiệm và niềm tin vận hành (học viên thức đêm chờ đợi), nhưng thiệt hại có thể khắc phục được vào sáng hôm sau khi TA giải thích và hỗ trợ. Trong khi đó, KB1 và KB6 làm sai lệch kiến thức và vi phạm liêm chính thi cử thì không có cách nào thu hồi lại được.
+
+---

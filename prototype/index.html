@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prototype · T2 Giáo dục — Trợ lý học bài tối muộn (Study Mode)</title>
+<style>
+:root{--ink:#1a202c;--mut:#718096;--line:#e2e8f0;--bg:#f7fafc;--card:#ffffff;--pri:#2b6cb0;--prib:#ebf8ff;--g:#2f855a;--gb:#f0fff4;--a:#c05621;--ab:#feebc8;--r:#c53030;--rb:#fff5f5;--p:#6b46c1;--pb:#faf5ff}
+*{box-sizing:border-box}body{margin:0;font-family:"Be Vietnam Pro","Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:14.5px;line-height:1.5}
+header{padding:16px 28px 12px;border-bottom:1px solid var(--line);background:#fff}
+h1{font-size:19px;margin:0 0 4px;font-weight:700}.sub{color:var(--mut);font-size:13px}
+.controls{display:flex;gap:12px;margin:12px 0 4px;flex-wrap:wrap;align-items:center}
+.ctrl-group{display:flex;align-items:center;gap:6px;background:#edf2f7;padding:4px 8px;border-radius:10px}
+.ctrl-group span{font-size:12.5px;font-weight:600;color:var(--mut)}
+.btn-toggle{border:1px solid transparent;background:transparent;border-radius:7px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
+.btn-toggle.on{border-color:var(--line);background:#fff;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08);color:var(--pri)}
+main{display:grid;grid-template-columns:460px 1fr;gap:24px;padding:20px 28px 28px;max-width:1380px}
+.app-frame{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06);display:flex;flex-direction:column;height:680px}
+.top-bar{background:#2d3748;color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px}
+.course-info{font-weight:600;display:flex;align-items:center;gap:8px}
+.badge-clock{background:#4a5568;padding:2px 8px;border-radius:999px;font-size:11.5px;color:#e2e8f0}
+.banner-scope{background:var(--ab);color:var(--a);padding:7px 14px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;border-bottom:1px solid #fbd38d}
+.chat-area{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;background:#fcfdfd}
+.me{align-self:flex-end;background:#2b6cb0;color:#fff;padding:10px 14px;border-radius:16px 16px 2px 16px;max-width:85%;font-size:13.5px}
+.ai{align-self:flex-start;background:#fff;border:1px solid var(--line);padding:12px 14px;border-radius:16px 16px 16px 2px;max-width:96%;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.ai-head{font-size:11.5px;font-weight:700;color:var(--pri);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
+.conf-pill{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;padding:2px 8px;border-radius:999px;font-weight:600}
+.conf-warn{background:var(--ab);color:var(--a)}
+.conf-danger{background:var(--rb);color:var(--r)}
+.conf-ok{background:var(--gb);color:var(--g)}
+.cite-box{background:#f7fafc;border-left:3px solid var(--pri);padding:7px 10px;border-radius:0 8px 8px 0;margin:8px 0;font-size:12.5px;color:#4a5568}
+.cite-box b{color:var(--ink)}
+.alert-box{border-radius:8px;padding:9px 12px;margin:8px 0;font-size:13px}
+.alert-box.danger{background:var(--rb);border:1px solid #feb2b2;color:#9b2c2c}
+.alert-box.info{background:var(--prib);border:1px solid #bee3f8;color:#2c5282}
+.btn-group{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.btn-action{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .15s}
+.btn-action:hover{background:#edf2f7;border-color:#cbd5e0}
+.btn-action.pri{background:var(--pri);color:#fff;border-color:var(--pri)}
+.btn-action.pri:hover{background:#2c5282}
+.btn-action.danger{background:#fff;color:var(--r);border-color:#feb2b2}
+.btn-action.danger:hover{background:var(--rb)}
+.n{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#e53e3e;color:#fff;font-size:10.5px;font-weight:700;flex-none}
+.hide-n .n{display:none}
+aside{display:flex;flex-direction:column;gap:16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.panel h2{font-size:15px;margin:0 0 10px;font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:middle}
+th{color:var(--mut);font-weight:600;background:#f7fafc}
+.pill{display:inline-block;padding:2px 7px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.pill-auto{background:var(--gb);color:var(--g)}
+.pill-ask{background:var(--ab);color:var(--a)}
+.pill-ban{background:var(--rb);color:var(--r)}
+.ann-list{padding-left:0;list-style:none;margin:0;display:flex;flex-direction:column;gap:8px;font-size:13px}
+.ann-item{background:#f8fafc;padding:8px 10px;border-radius:8px;border:1px solid #edf2f7}
+.ann-item b{color:#2d3748}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:99}
+.modal-overlay.show{display:flex}
+.modal-card{background:#fff;border-radius:16px;padding:20px;max-width:420px;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+</style></head>
+<body>
+<header>
+ <h1>Prototype Kiểm Thử UX & Autonomy · Track 2 (Giáo dục)</h1>
+ <div class="sub">Hệ thống: Trợ lý học bài Study Mode tích hợp khoá "Nhập môn phân tích dữ liệu" · Ca hỏi bài lúc 23:15 đêm muộn (Ngoài giờ trực TA).</div>
+ <div class="controls">
+  <div class="ctrl-group">
+   <span>Tình huống kiểm thử:</span>
+   <button class="btn-toggle on" onclick="setScenario('kb6')">KB6: Dán dãy số bài 3 (Khó nhất)</button>
+   <button class="btn-toggle" onclick="setScenario('kb1')">KB1: Tài liệu §3.3 có lỗi</button>
+   <button class="btn-toggle" onclick="setScenario('kb7')">KB7: Đòi gặp TA lúc 23:30</button>
+  </div>
+  <div class="ctrl-group">
+   <span>Mức tự chủ `goi_y_bai_tap`:</span>
+   <button class="btn-toggle" id="lvl-1" onclick="setLevel(1)">① Chỉ trích dẫn</button>
+   <button class="btn-toggle on" id="lvl-2" onclick="setLevel(2)">② Gợi ý có duyệt từng bước</button>
+   <button class="btn-toggle" id="lvl-3" onclick="setLevel(3)">③ Tự giải hộ (Nguy hiểm)</button>
+  </div>
+  <label style="font-size:13px;display:inline-flex;align-items:center;gap:5px;cursor:pointer">
+   <input type="checkbox" id="chk-ann" checked onchange="toggleAnnotations()"> <b>Hiện số chỉ mục HAX/PAIR</b>
+  </label>
+ </div>
+</header>
+
+<main>
+ <section class="app-frame" id="appFrame">
+  <div class="top-bar">
+   <div class="course-info">
+    <span>📚 Khóa học: Phân tích Dữ liệu · Buổi 3</span>
+   </div>
+   <div class="badge-clock">⏰ 23:15 (TA Ngoại tuyến · Ca trực 08:00 - 22:00)</div>
+  </div>
+  <div class="banner-scope">
+   <span class="n">1</span> ℹ️ <b>Study Mode:</b> Trợ lý giải thích phương pháp & trích dẫn tài liệu — Không giải hộ hoặc cho đáp số bài tập đang mở.
+  </div>
+  <div class="chat-area" id="chatArea"></div>
+ </section>
+
+ <aside>
+  <div class="panel">
+   <h2>Lời hứa với học viên ở mức tự chủ này</h2>
+   <div id="promiseBox" style="font-size:13.5px;background:#f7fafc;padding:10px 12px;border-left:4px solid var(--pri);border-radius:0 8px 8px 0"></div>
+  </div>
+
+  <div class="panel">
+   <h2>Bảng Mức Tự Chủ của 4 Tool</h2>
+   <table>
+    <thead><tr><th>Tool</th><th>Mức</th><th>Cost-of-Error (Cái giá khi sai)</th></tr></thead>
+    <tbody>
+     <tr><td><code>tra_cuu_tai_lieu</code></td><td><span class="pill pill-auto">Tự làm</span></td><td>Chỉ đọc tài liệu Buổi 1–3, rủi ro cực thấp.</td></tr>
+     <tr style="background:#fffaf0" id="rowGoiY"><td><code>goi_y_bai_tap</code></td><td><span class="pill pill-ask" id="pillGoiY">Cần duyệt</span></td><td>Gợi ý quá tay thì lộ đáp số, học viên chép bài không đảo lại được.</td></tr>
+     <tr><td><code>chuyen_TA</code></td><td><span class="pill pill-ask">Cần duyệt</span></td><td>Học viên bấm xác nhận; báo rõ hẹn 08:00 sáng mai nếu ngoài giờ.</td></tr>
+     <tr><td><code>dang_FAQ</code></td><td><span class="pill pill-ban">CẤM</span></td><td>Chỉ tạo bản nháp; bắt buộc Giảng viên/TA duyệt mới công khai.</td></tr>
+    </tbody>
+   </table>
+  </div>
+
+  <div class="panel">
+   <h2>Bản đồ đối chiếu HAX / PAIR</h2>
+   <ul class="ann-list">
+    <li class="ann-item"><span class="n">1</span> <b>HAX G1 (Nói rõ hệ thống làm được gì):</b> Banner trên cùng xác định rõ trợ lý chỉ gợi ý phương pháp, không làm bài hộ.</li>
+    <li class="ann-item"><span class="n">2</span> <b>Kiểm soát rủi ro & Mức tự chủ CẤM:</b> Nhận diện dữ liệu bài tập đang mở (Bài 3 hạn 13/11) và từ chối cung cấp đáp số.</li>
+    <li class="ann-item"><span class="n">3</span> <b>HAX G9 (Đưa ra căn cứ tin cậy):</b> Trích dẫn chính xác mã mục (§3.1, §3.2, §3.3) trong giáo trình đã học.</li>
+    <li class="ann-item"><span class="n">4</span> <b>Human-in-the-loop (Học viên duyệt từng bước):</b> Học viên chủ động bấm nút để nhận gợi ý bước tiếp theo thay vì bị ép xem đáp số.</li>
+    <li class="ann-item"><span class="n">5</span> <b>HAX G10 (Chuyển giao quyền kiểm soát):</b> Nút chuyển câu hỏi vào hàng đợi của TA kèm cam kết thời gian phản hồi thực tế.</li>
+   </ul>
+  </div>
+ </aside>
+</main>
+
+<div class="modal-overlay" id="taModal">
+ <div class="modal-card">
+  <h3 style="margin-top:0">Xác nhận gửi câu hỏi cho Trợ giảng (TA)</h3>
+  <p style="font-size:13.5px;color:#4a5568">Hiện tại là <b>23:15</b> (ngoài ca trực 08:00–22:00 của TA). Câu hỏi kèm ngữ cảnh đoạn chat của bạn sẽ được lưu vào hàng đợi ưu tiên.</p>
+  <div style="background:#edf2f7;padding:8px 12px;border-radius:8px;font-size:13px;margin:10px 0">
+   ⏰ <b>Thời gian phản hồi dự kiến:</b> Từ 08:00 sáng mai (13/11/2026).
+  </div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
+   <button class="btn-action" onclick="closeModal()">Hủy</button>
+   <button class="btn-action pri" onclick="confirmSendTA()">Xác nhận gửi ticket</button>
+  </div>
+ </div>
+</div>
+
+<script>
+let curScenario = 'kb6';
+let curLevel = 2;
+let stepState = 0;
+
+const promises = {
+ 1: "Mức ① (Chỉ trích dẫn): Trợ lý hoàn toàn không gợi ý các bước giải, chỉ đưa đoạn văn tài liệu (§3.1, §3.2). Tuyệt đối an toàn về liêm chính, nhưng học viên học đêm muộn có thể bị kẹt không biết áp dụng.",
+ 2: "Mức ② (Gợi ý có duyệt từng bước): Trợ lý dẫn dắt phương pháp (Socratic). Học viên bấm duyệt bước 1 mới được mở bước 2. Đảm bảo học viên tự tư duy và không bao giờ lộ đáp số cuối cùng.",
+ 3: "Mức ③ (Tự giải hộ — Nguy hiểm): Trợ lý tính hộ toàn bộ kết quả (Trung bình = 15.25, Trung vị = 11.5). Học viên chép ngay để nộp bài; vi phạm liêm chính thi cử, không thể đảo ngược tác hại."
+};
+
+function setScenario(sc) {
+ curScenario = sc;
+ stepState = 0;
+ document.querySelectorAll('.ctrl-group:first-child .btn-toggle').forEach(b => b.classList.remove('on'));
+ event.target.classList.add('on');
+ renderChat();
+}
+
+function setLevel(lvl) {
+ curLevel = lvl;
+ stepState = 0;
+ document.querySelectorAll('#lvl-1, #lvl-2, #lvl-3').forEach(b => b.classList.remove('on'));
+ document.getElementById('lvl-' + lvl).classList.add('on');
+ 
+ const pill = document.getElementById('pillGoiY');
+ if(lvl === 1) { pill.className = 'pill pill-auto'; pill.textContent = 'Tự làm (Chỉ đọc)'; }
+ else if(lvl === 2) { pill.className = 'pill pill-ask'; pill.textContent = 'Cần duyệt (Học viên)'; }
+ else { pill.className = 'pill pill-danger'; pill.textContent = 'Tự giải hộ (Nguy hiểm)'; }
+
+ document.getElementById('promiseBox').textContent = promises[lvl];
+ renderChat();
+}
+
+function nextStep() {
+ stepState++;
+ renderChat();
+}
+
+function openModal() {
+ document.getElementById('taModal').classList.add('show');
+}
+function closeModal() {
+ document.getElementById('taModal').classList.remove('show');
+}
+function confirmSendTA() {
+ closeModal();
+ alert("Đã tạo Ticket #TA-8821 gửi tới ca trực sáng mai (08:00 13/11/2026). TA sẽ phản hồi qua thông báo khóa học!");
+}
+
+function toggleAnnotations() {
+ const chk = document.getElementById('chk-ann').checked;
+ if(chk) document.body.classList.remove('hide-n');
+ else document.body.classList.add('hide-n');
+}
+
+function renderChat() {
+ const c = document.getElementById('chatArea');
+ c.innerHTML = '';
+
+ if(curScenario === 'kb6') {
+  c.innerHTML += `<div class="me">Tính giúp em trung bình và trung vị của dãy số sau: 9, 10, 10, 11, 12, 12, 13, 45.</div>`;
+  
+  if(curLevel === 3) {
+   c.innerHTML += `<div class="ai">
+    <div class="ai-head"><span>Trợ lý học tập (AI)</span><span class="conf-pill conf-danger">⚠️ ĐÃ VI PHẠM CHÍNH SÁCH BÀI TẬP</span></div>
+    <div class="alert-box danger">Đã tính hộ kết quả (Mức tự chủ 3 - Tự giải):</div>
+    <p>• <b>Trung bình:</b> (9+10+10+11+12+12+13+45)/8 = <b>15.25</b><br>• <b>Trung vị:</b> Dãy đã xếp sẵn, hai số giữa là 11 và 12 → (11+12)/2 = <b>11.5</b></p>
+    <div style="font-size:12px;color:var(--r)">*(Hậu quả: Học viên chép ngay đáp án nộp Bài tập 3, không hiểu bản chất ngoại lai 45 kéo trung bình lên).*</div>
+   </div>`;
+  } else if(curLevel === 1) {
+   c.innerHTML += `<div class="ai">
+    <div class="ai-head"><span>Trợ lý học tập (AI)</span><span class="conf-pill conf-ok">Mức 1: Chỉ trích dẫn</span></div>
+    <div class="alert-box info"><span class="n">2</span> Dãy số bạn gửi trùng khớp với dữ liệu <b>Bài tập 3</b> đang mở. Trợ lý chỉ trích dẫn tài liệu:</div>
+    <div class="cite-box"><span class="n">3</span> <b>§3.1 Trung bình cộng:</b> Tổng các giá trị chia cho số giá trị.<br><b>§3.2 Trung vị:</b> Giá trị đứng giữa khi sắp xếp dữ liệu tăng dần. Nếu số lượng chẵn, lấy trung bình cộng của 2 giá trị đứng giữa.</div>
+    <p style="font-size:13px">Bạn vui lòng đọc lý thuyết trên để tự tính bài tập.</p>
+    <div class="btn-group"><button class="btn-action" onclick="openModal()"><span class="n">5</span> Hỏi TA nếu vẫn chưa hiểu</button></div>
+   </div>`;
+  } else {
+   // Level 2 (Standard)
+   let extra = '';
+   if(stepState >= 1) {
+    extra = `<div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)">
+     <div style="font-weight:600;font-size:13px;color:var(--pri)">✅ Bước 1: Dãy số của bạn đã được sắp xếp tăng dần sẵn:</div>
+     <div style="background:#edf2f7;padding:6px 10px;border-radius:6px;font-family:monospace;margin:6px 0">9, 10, 10, [11, 12], 12, 13, 45  (Tổng N = 8 phần tử)</div>
+     <p style="font-size:13px;margin:4px 0">Theo <b>§3.2</b>, vì N chẵn, hai số đứng giữa ở vị trí thứ 4 và thứ 5 là <b>11</b> và <b>12</b>. Hãy tính trung bình của 2 số này để ra trung vị nhé!</p>
+     <button class="btn-action pri" onclick="nextStep()"><span class="n">4</span> Đã hiểu, gợi ý câu b (Con số nào điển hình?)</button>
+    </div>`;
+   }
+   if(stepState >= 2) {
+    extra += `<div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)">
+     <div style="font-weight:600;font-size:13px;color:var(--pri)">💡 Gợi ý câu b (Khái niệm Ngoại lai theo §3.4):</div>
+     <p style="font-size:13px;margin:4px 0">Bạn hãy để ý số <b>45 triệu</b> cao vượt trội so với các bạn còn lại (9–13 triệu). Theo <b>§3.1</b>, số ngoại lai này sẽ kéo con số Trung bình lên rất cao. Vậy con số nào phản ánh đúng mức lương của đại đa số nhân viên hơn?</p>
+    </div>`;
+   }
+
+   c.innerHTML += `<div class="ai">
+    <div class="ai-head"><span>Trợ lý học tập (AI)</span><span class="conf-pill conf-warn"><span class="n">2</span> BÀI TẬP 3 ĐANG MỞ (Hạn: 13/11 23:59)</span></div>
+    <div class="alert-box info">Dãy số bạn gửi trùng khớp với dữ liệu <b>Bài tập 3</b>. Theo quy định học tập, mình không được tính hộ đáp số, nhưng sẽ đồng hành hướng dẫn bạn từng bước:</div>
+    <div class="cite-box"><span class="n">3</span> Căn cứ phương pháp: <b>§3.1 (Trung bình)</b> & <b>§3.2 (Trung vị cho tập số chẵn)</b>.</div>
+    <div class="btn-group">
+     ${stepState === 0 ? `<button class="btn-action pri" onclick="nextStep()"><span class="n">4</span> Bấm để xem gợi ý Bước 1 (Tìm 2 số đứng giữa)</button>` : ''}
+     <button class="btn-action" onclick="openModal()"><span class="n">5</span> Gửi câu hỏi vào hàng đợi của TA</button>
+    </div>
+    ${extra}
+   </div>`;
+  }
+ } else if(curScenario === 'kb1') {
+  c.innerHTML += `<div class="me">Tài liệu §3.3 bảo "độ lệch chuẩn luôn nhỏ hơn phương sai" có đúng không ạ? Nếu phương sai là 0.25 thì sao bot?</div>`;
+  c.innerHTML += `<div class="ai">
+   <div class="ai-head"><span>Trợ lý học tập (AI)</span><span class="conf-pill conf-warn"><span class="n">2</span> PHÁT HIỆN ĐIỂM BẤT THƯỜNG TOÁN HỌC</span></div>
+   <p style="margin:4px 0">Cảm ơn bạn đã chỉ ra một phát hiện phản biện rất chính xác!</p>
+   <div class="cite-box"><span class="n">3</span> <b>Đối chiếu tài liệu §3.3:</b> Có ghi <i>'Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai'</i>.</div>
+   <div class="alert-box danger">
+    <b>Phân tích toán học:</b> Khi phương sai = 0.25 thì độ lệch chuẩn là &radic;0.25 = <b>0.5</b> (&gt; 0.25).<br>
+    Khẳng định trong tài liệu chỉ đúng khi phương sai &gt; 1. Nhận xét của bạn hoàn toàn chính xác!
+   </div>
+   <p style="font-size:13px">Trợ lý không có quyền tự ý sửa giáo trình chính thức. Mình đã tạo phiếu báo lỗi học thuật gửi giảng viên.</p>
+   <div class="btn-group">
+    <button class="btn-action pri" onclick="alert('Đã gửi phiếu đính chính #TK-303 đến Giảng viên môn học!')"><span class="n">5</span> Xem phiếu góp ý gửi Giảng viên (#TK-303)</button>
+    <button class="btn-action" onclick="alert('Đã lưu ghi chú vào tài khoản của bạn')">Lưu ghi chú này vào sổ tay học tập</button>
+   </div>
+  </div>`;
+ } else if(curScenario === 'kb7') {
+  c.innerHTML += `<div class="me">Em bị kẹt bài tập 3 câu b không hiểu ngoại lai là gì, bot gọi TA vào meet giảng gấp cho em với!</div>`;
+  c.innerHTML += `<div class="ai">
+   <div class="ai-head"><span>Trợ lý học tập (AI)</span><span class="conf-pill conf-warn"><span class="n">2</span> NGOÀI GIỜ TRỰC CỦA TA (23:15)</span></div>
+   <div class="alert-box info">
+    Hiện tại đã qua ca trực hôm nay của TA (Khung giờ trực: <b>08:00 – 22:00</b>). TA không thể vào phòng Meet ngay lúc này.
+   </div>
+   <p style="font-size:13.5px">Bạn đừng lo! Mình đã mở sẵn phiếu câu hỏi để TA kiểm tra và giải đáp cho bạn lúc <b>08:00 sáng mai</b>. Trong lúc này, bạn có muốn xem giải thích trực quan về <b>§3.4 Giá trị ngoại lai</b> không?</p>
+   <div class="btn-group">
+    <button class="btn-action pri" onclick="openModal()"><span class="n">5</span> Xác nhận gửi câu hỏi vào hàng đợi của TA</button>
+    <button class="btn-action" onclick="alert('Khái niệm §3.4: Giá trị ngoại lai là con số khác hẳn phần lớn dữ liệu, ví dụ một người nhận lương 45 triệu giữa các bạn nhận 10 triệu.')"><span class="n">3</span> Xem giải thích nhanh §3.4</button>
+   </div>
+  </div>`;
+ }
+}
+
+document.getElementById('promiseBox').textContent = promises[2];
+renderChat();
+</script>
+</body></html>
+
